@@ -144,14 +144,14 @@ module ActsAsVotable
         updates[:cached_votes_down] = count_votes_down(true)
       end
 
-      self.update_attributes(updates, :without_protection => true) if updates.size > 0
+      self.update_attributes(updates) if updates.size > 0
 
     end
 
 
     # results
     def find_votes extra_conditions = {}
-      votes.where(extra_conditions)
+      votes.find(:all, :conditions => extra_conditions)
     end
 
     def up_votes

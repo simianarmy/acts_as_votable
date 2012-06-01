@@ -73,7 +73,7 @@ module ActsAsVotable
     alias :voted_as_when_voted_for :voted_as_when_voting_on
 
     def find_votes extra_conditions = {}
-      votes.where(extra_conditions)
+      votes.find(:all, :conditions => extra_conditions)
     end
 
     def find_up_votes

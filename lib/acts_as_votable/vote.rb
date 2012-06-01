@@ -13,10 +13,10 @@ module ActsAsVotable
     belongs_to :votable, :polymorphic => true
     belongs_to :voter, :polymorphic => true
 
-    scope :up, where(:vote_flag => true)
-    scope :down, where(:vote_flag => false)
-    scope :for_type, lambda{ |klass| where(:votable_type => klass) }
-    scope :by_type,  lambda{ |klass| where(:voter_type => klass) }
+    named_scope :up, :conditions => {:vote_flag => true}
+    named_scope :down, :conditions => {:vote_flag => false}
+    named_scope :for_type, lambda{ |klass| { :conditions => {:votable_type => klass.to_s} } }
+    named_scope :by_type,  lambda{ |klass| { :conditions => {:voter_type => klass.to_s} } }
 
     validates_presence_of :votable_id
     validates_presence_of :voter_id
