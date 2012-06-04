@@ -23,7 +23,7 @@ And follow that up with a ``bundle install``.
 Acts As Votable uses a votes table to store all voting information.  To
 generate and run the migration just use.
 
-    rails generate acts_as_votable:migration
+    script/generate acts_as_votable
     rake db:migrate
 
 You will get a performance increase by adding in cached columns to your model's
